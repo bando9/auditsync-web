@@ -1,13 +1,15 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
 
 interface CardInfoProps {
   title: string
   count: string
   description: string
-  colorCard: string
+  colorCard?: string
   colorText?: string
   colorIcon?: string
   icon: React.ElementType
+  isProgress?: boolean
+  progressCount?: number
 }
 
 function CardInfo({
@@ -18,23 +20,27 @@ function CardInfo({
   colorIcon,
   colorText,
   icon: Icon,
+  isProgress,
+  progressCount,
 }: CardInfoProps) {
   return (
-    <Card
-      size="sm"
-      className={`w-full max-w-full border-t-2 md:max-w-xs ${colorCard}`}
+    <div
+      className={`rounded-xl border border-border bg-white p-6 text-card-foreground shadow-sm ${colorCard}`}
     >
-      <CardHeader className="flex justify-between">
-        <CardTitle>{title} </CardTitle>
-        <Icon className={`w-5 md:w-7 ${colorIcon}`} />
-      </CardHeader>
-      <CardContent>
-        <h2 className={`text-xl font-bold md:text-2xl ${colorText}`}>
-          {count}
-        </h2>
-        <p className={`text-sm md:text-base ${colorText}`}>{description}</p>
-      </CardContent>
-    </Card>
+      <div className="flex items-center justify-between space-y-0 pb-2">
+        <h3 className="text-sm font-medium tracking-tight">{title}</h3>
+        <Icon className={`h-4 w-4 ${colorIcon}`} />
+      </div>
+      <div className={`text-2xl font-bold ${colorText}`}>{count}</div>
+      {isProgress ? (
+        <Progress
+          value={progressCount}
+          className="h-1.5 bg-gray-200 [&>div]:rounded-full [&>div]:bg-blue-500"
+        />
+      ) : (
+        <p className="mt-1 text-xs text-muted-foreground">{description}</p>
+      )}
+    </div>
   )
 }
 

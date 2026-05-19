@@ -1,94 +1,65 @@
 import { Input } from "@/components/ui/input"
-import { Progress } from "@/components/ui/progress"
 import {
   Activity,
   AlertTriangle,
   Archive,
   CheckSquare,
   CircleCheck,
-  FileDown,
-  FileUp,
   MoreHorizontal,
   Search,
 } from "lucide-react"
+import HeaderDashboard from "./components/header-dashboard"
+import CardInfo from "./components/card-info"
 
 function AdminDashboard() {
   return (
     <main className="flex h-screen flex-1 flex-col overflow-hidden">
-      <header className="flex h-16 shrink-0 items-center justify-between border-b border-border bg-white px-6">
-        <div>
-          <h1 className="text-lg font-semibold">Stock Opname Q2 2026</h1>
-          <p className="text-xs text-muted-foreground">
-            Sesi Aktif &bull; Terakhir diperbarui 2 menit yang lalu
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <button className="inline-flex h-9 items-center justify-center rounded-md border border-border bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-muted">
-            <FileDown className="mr-2 h-4 w-4" /> Export Hasil
-          </button>
-          <button className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90">
-            <FileUp className="mr-2 h-4 w-4" /> Import SAP
-          </button>
-        </div>
-      </header>
+      <HeaderDashboard />
       <div className="flex-1 overflow-auto p-6">
         <div className="mb-6 grid gap-4 md:grid-cols-4">
           {/*  Card 1  */}
-          <div className="rounded-xl border border-border bg-white p-6 text-card-foreground shadow-sm">
-            <div className="flex items-center justify-between space-y-0 pb-2">
-              <h3 className="text-sm font-medium tracking-tight">
-                Total Target
-              </h3>
-              <Archive className="h-4 w-4 text-muted-foreground" />
-            </div>
-            <div className="text-2xl font-bold">2,500</div>
-            <p className="mt-1 text-xs text-muted-foreground">
-              Baris data Excel SAP
-            </p>
-          </div>
+          <CardInfo
+            title="Total Target"
+            description="Baris data Excel SAP"
+            count="2,500"
+            icon={Archive}
+            colorIcon="text-muted-foreground"
+            isProgress={false}
+          />
           {/* <!-- Card 2 --> */}
-          <div className="rounded-xl border border-t-4 border-border border-t-green-500 bg-white p-6 text-card-foreground shadow-sm">
-            <div className="flex items-center justify-between space-y-0 pb-2">
-              <h3 className="text-sm font-medium tracking-tight">
-                Selesai (Match)
-              </h3>
-              <CircleCheck className="h-4 w-4 text-green-500" />
-            </div>
-            <div className="text-2xl font-bold">1,240</div>
-            <p className="mt-1 text-xs text-muted-foreground">
-              Sesuai dengan SAP
-            </p>
-          </div>
+          <CardInfo
+            title="Selesai (Match)"
+            count="1,240"
+            description="Sesuai dengan SAP"
+            icon={CircleCheck}
+            colorCard="border-t-4 border-t-green-500"
+            colorIcon="text-green-500"
+            isProgress={false}
+          />
           {/* <!-- Card 3 --> */}
-          <div className="rounded-xl border border-t-4 border-border border-t-red-500 bg-white p-6 text-card-foreground shadow-sm">
-            <div className="flex items-center justify-between space-y-0 pb-2">
-              <h3 className="text-sm font-medium tracking-tight">
-                Selisih (Mismatch)
-              </h3>
-              <AlertTriangle className="h-4 w-4 text-red-500" />
-            </div>
-            <div className="text-2xl font-bold text-red-600">15</div>
-            <p className="mt-1 text-xs text-muted-foreground">
-              Butuh investigasi
-            </p>
-          </div>
+          <CardInfo
+            title="Selisih (Mismatch)"
+            count="15"
+            description="Butuh investigasi"
+            icon={AlertTriangle}
+            colorCard="border-t-4 border-t-red-500"
+            colorIcon="text-red-600"
+            colorText="text-red-600"
+            isProgress={false}
+          />
+
           {/* <!-- Card 4 --> */}
-          <div className="rounded-xl border border-border bg-white p-6 text-card-foreground shadow-sm">
-            <div className="flex items-center justify-between space-y-0 pb-2">
-              <h3 className="text-sm font-medium tracking-tight">
-                Progres Lapangan
-              </h3>
-              <Activity className="h-4 w-4 text-blue-500" />
-            </div>
-            <div className="text-2xl font-bold">50.2%</div>
-            <div className="mt-2 h-1.5 w-full rounded-full bg-muted">
-              <Progress
-                value={50.2}
-                className="h-1.5 bg-gray-200 [&>div]:rounded-full [&>div]:bg-blue-500"
-              />
-            </div>
-          </div>
+          <CardInfo
+            title="Progres Lapangan"
+            count="50.2%"
+            description="Butuh investigasi"
+            icon={Activity}
+            colorIcon="text-blue-500"
+            isProgress={true}
+            progressCount={50.2}
+          />
         </div>
+
         <div className="flex flex-col rounded-xl border border-border bg-white shadow-sm">
           <div className="flex items-center justify-between border-b border-border bg-muted/30 p-4">
             <div className="flex w-full max-w-xl items-center gap-3">
