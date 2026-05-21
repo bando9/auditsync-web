@@ -10,7 +10,10 @@ export type AuditTarget = {
 
   rawMaterialName: string
   jobNo: string
+  fgName: string
   warehouse: string
+  uom: string
+
   sapQty: number
   physicalQty: number
   discrepancy: number
@@ -46,6 +49,10 @@ export const columns: ColumnDef<AuditTarget>[] = [
     ),
     enableSorting: false,
     enableHiding: false,
+  },
+  {
+    accessorKey: "id",
+    header: "Audit ID",
   },
   {
     accessorKey: "rawMaterialName",

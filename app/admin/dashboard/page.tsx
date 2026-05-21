@@ -3,8 +3,12 @@ import { CheckSquare, MoreHorizontal, Search } from "lucide-react"
 import HeaderDashboard from "./components/header-dashboard"
 import CardInfo from "./components/card-info"
 import { dataInfo } from "./lib/data-info"
+import { getData } from "./lib/ex-data"
+import { DataTable } from "./components/ex-data-table"
+import { columns } from "./components/columns"
 
-function AdminDashboard() {
+async function AdminDashboard() {
+  const data = await getData()
   return (
     <main className="flex h-screen flex-1 flex-col overflow-hidden">
       <HeaderDashboard />
@@ -14,6 +18,10 @@ function AdminDashboard() {
             return <CardInfo key={info.title} {...info} />
           })}
         </div>
+
+        {/* START TABLE SHADCN-UI */}
+        <DataTable columns={columns} data={data} />
+        {/* FINISH TABLE SHADCN-UI */}
 
         <div className="flex flex-col rounded-xl border border-border bg-white shadow-sm">
           <div className="flex items-center justify-between border-b border-border bg-muted/30 p-4">
@@ -44,6 +52,7 @@ function AdminDashboard() {
             </div>
           </div>
         </div>
+
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-left text-sm">
             <thead className="bg-muted/50 text-muted-foreground [&_tr]:border-b">
