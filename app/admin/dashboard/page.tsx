@@ -4,7 +4,7 @@ import HeaderDashboard from "./components/header-dashboard"
 import CardInfo from "./components/card-info"
 import { dataInfo } from "./lib/data-info"
 import { getData } from "./lib/ex-data"
-import { DataTable } from "./components/ex-data-table"
+import { DataTable } from "./components/data-table"
 import { columns } from "./components/columns"
 
 async function AdminDashboard() {

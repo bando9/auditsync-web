@@ -23,6 +23,8 @@ import {
 } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { CheckSquare, Search } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -57,35 +59,64 @@ export function DataTable<TData, TValue>({
     },
   })
 
+  const selectedCount = table.getFilteredSelectedRowModel().rows.length
+  const hasSelection = selectedCount > 0
+
   return (
     <div className="max-w-6xl">
-      <div className="flex items-center py-4">
-        <Input
-          placeholder="Cari nama bahan baku..."
-          value={
-            (table.getColumn("rawMaterialName")?.getFilterValue() as string) ??
-            ""
-          }
-          onChange={(event) =>
-            table
-              .getColumn("rawMaterialName")
-              ?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-
-        <Input
-          placeholder="Cari Job No (misal: A240008)..."
-          value={(table.getColumn("jobNo")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("jobNo")?.setFilterValue(event.target.value)
-          }
-          className="max-w-50"
-        />
+      <div className="flex flex-col rounded-xl border border-border bg-white shadow-sm">
+        <div className="flex items-center justify-between border-b border-border bg-muted/30 p-4">
+          <div className="flex w-full max-w-xl items-center gap-3">
+            <div className="relative flex-1">
+              <Search className="absolute top-2.5 left-2.5 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Cari nama bahan baku..."
+                value={
+                  (table
+                    .getColumn("rawMaterialName")
+                    ?.getFilterValue() as string) ?? ""
+                }
+                onChange={(event) =>
+                  table
+                    .getColumn("rawMaterialName")
+                    ?.setFilterValue(event.target.value)
+                }
+                type="text"
+                className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 pl-9 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none"
+              />
+            </div>
+            <Input
+              placeholder="Cari Job No (misal: A240008)..."
+              value={
+                (table.getColumn("jobNo")?.getFilterValue() as string) ?? ""
+              }
+              onChange={(event) =>
+                table.getColumn("jobNo")?.setFilterValue(event.target.value)
+              }
+              type="text"
+              className="flex h-9 w-40 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none"
+            />
+          </div>
+          <div className="flex items-center gap-2">
+            {hasSelection ? (
+              <>
+                <span className="mr-2 hidden text-sm text-muted-foreground lg:inline-block">
+                  {selectedCount} baris terpilih
+                </span>
+                <button className="inline-flex h-9 items-center justify-center rounded-md border border-border bg-white px-3 text-sm font-medium transition-colors hover:bg-muted">
+                  <CheckSquare className="mr-2 h-4 w-4 text-green-600" />{" "}
+                  Approve Selected
+                </button>
+              </>
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
       </div>
-      <div className="overflow-hidden rounded-md border">
+      <div className="overflow-x-auto rounded-md border border-border bg-white shadow-sm">
         <Table>
-          <TableHeader>
+          <TableHeader className="bg-muted/50 text-muted-foreground">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
@@ -103,30 +134,42 @@ export function DataTable<TData, TValue>({
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className="[&_tr:last-child]:border-0">
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
+              table.getRowModel().rows.map((row) => {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                const status = (row.original as any).status
+                const isBlindMismatch = status === "blind-mismatch"
+
+                return (
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                    className={cn(
+                      "transition-colors hover:bg-muted/50",
+                      isBlindMismatch &&
+                        "border-l-2 border-l-red-500 bg-muted/10 hover:bg-muted/30",
+                      row.getIsSelected() && "bg-muted/30"
+                    )}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                )
+              })
             ) : (
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  Tidak ada data.
                 </TableCell>
               </TableRow>
             )}
@@ -134,8 +177,7 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
       <div className="flex-1 text-sm text-muted-foreground">
-        {table.getFilteredSelectedRowModel().rows.length} of{" "}
-        {table.getFilteredRowModel().rows.length} row(s) selected.
+        {table.getFilteredRowModel().rows.length} total baris
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button
