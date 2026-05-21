@@ -1,15 +1,8 @@
 import { Input } from "@/components/ui/input"
-import {
-  Activity,
-  AlertTriangle,
-  Archive,
-  CheckSquare,
-  CircleCheck,
-  MoreHorizontal,
-  Search,
-} from "lucide-react"
+import { CheckSquare, MoreHorizontal, Search } from "lucide-react"
 import HeaderDashboard from "./components/header-dashboard"
 import CardInfo from "./components/card-info"
+import { dataInfo } from "./lib/data-info"
 
 function AdminDashboard() {
   return (
@@ -17,47 +10,9 @@ function AdminDashboard() {
       <HeaderDashboard />
       <div className="flex-1 overflow-auto p-6">
         <div className="mb-6 grid gap-4 md:grid-cols-4">
-          {/*  Card 1  */}
-          <CardInfo
-            title="Total Target"
-            description="Baris data Excel SAP"
-            count="2,500"
-            icon={Archive}
-            colorIcon="text-muted-foreground"
-            isProgress={false}
-          />
-          {/* <!-- Card 2 --> */}
-          <CardInfo
-            title="Selesai (Match)"
-            count="1,240"
-            description="Sesuai dengan SAP"
-            icon={CircleCheck}
-            colorCard="border-t-4 border-t-green-500"
-            colorIcon="text-green-500"
-            isProgress={false}
-          />
-          {/* <!-- Card 3 --> */}
-          <CardInfo
-            title="Selisih (Mismatch)"
-            count="15"
-            description="Butuh investigasi"
-            icon={AlertTriangle}
-            colorCard="border-t-4 border-t-red-500"
-            colorIcon="text-red-600"
-            colorText="text-red-600"
-            isProgress={false}
-          />
-
-          {/* <!-- Card 4 --> */}
-          <CardInfo
-            title="Progres Lapangan"
-            count="50.2%"
-            description="Butuh investigasi"
-            icon={Activity}
-            colorIcon="text-blue-500"
-            isProgress={true}
-            progressCount={50.2}
-          />
+          {dataInfo.map((info) => {
+            return <CardInfo key={info.title} {...info} />
+          })}
         </div>
 
         <div className="flex flex-col rounded-xl border border-border bg-white shadow-sm">
