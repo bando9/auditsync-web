@@ -60,7 +60,7 @@ function ErrorPage({
             {/* <!-- Tombol Utama (Coba Lagi / Reset) --> */}
             {/* <!-- Di Next.js, ini akan memicu fungsi reset() bawaan error boundary --> */}
             <button
-              onClick={reset()}
+              // onClick={reset()}
               className="inline-flex h-12 w-full items-center justify-center rounded-xl bg-primary text-sm font-bold text-primary-foreground shadow-sm transition-all hover:bg-primary/90 active:scale-[0.98]"
             >
               <RefreshCw className="mr-2 h-4 w-4" /> Coba Lagi

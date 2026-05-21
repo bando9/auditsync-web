@@ -1,4 +1,13 @@
-import { Boxes, KeyRound, Pencil, Shield, UserCheck } from "lucide-react"
+import {
+  Boxes,
+  ClipboardCheck,
+  KeyRound,
+  Pencil,
+  Search,
+  Shield,
+  UserCheck,
+  UserPlus,
+} from "lucide-react"
 import React from "react"
 
 function AdminUsersPage() {
@@ -18,8 +27,7 @@ function AdminUsersPage() {
         <div className="flex items-center gap-3">
           {/* <!-- Tombol Utama Tambah Anggota --> */}
           <button className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90">
-            <i data-lucide="user-plus" className="mr-2 h-4 w-4"></i> Tambah
-            Anggota
+            <UserPlus className="mr-2 h-4 w-4" /> Tambah Anggota
           </button>
         </div>
       </header>
@@ -32,10 +40,7 @@ function AdminUsersPage() {
           <div className="flex flex-col items-center justify-between gap-4 border-b border-border bg-muted/10 p-4 md:flex-row">
             <div className="flex w-full max-w-md items-center gap-3">
               <div className="relative flex-1">
-                <i
-                  data-lucide="search"
-                  className="absolute top-2.5 left-2.5 h-4 w-4 text-muted-foreground"
-                ></i>
+                <Search className="absolute top-2.5 left-2.5 h-4 w-4 text-muted-foreground" />
                 <input
                   type="text"
                   placeholder="Cari nama atau username/ID..."
@@ -147,10 +152,7 @@ function AdminUsersPage() {
                   </td>
                   <td className="p-4 align-middle">
                     <span className="inline-flex items-center gap-1.5 rounded border border-blue-100 bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700">
-                      <i
-                        data-lucide="clipboard-check"
-                        className="h-3.5 w-3.5"
-                      ></i>{" "}
+                      <ClipboardCheck className="h-3.5 w-3.5" />
                       Auditor
                     </span>
                   </td>
