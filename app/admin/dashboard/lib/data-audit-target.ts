@@ -1,4 +1,4 @@
-import { AuditTarget } from "../components/ex-columns"
+import { AuditTarget } from "../components/columns"
 
 export async function getData(): Promise<AuditTarget[]> {
   return [
@@ -13,7 +13,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 23,
       discrepancy: 0,
       status: "matched",
-      lastVerified: "23 Oct 2024",
     },
     {
       id: "489e1d42",
@@ -26,7 +25,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 95,
       discrepancy: -5,
       status: "sap-discrepancy",
-      lastVerified: "24 Oct 2024",
     },
     {
       id: "9b1c8f7a",
@@ -39,7 +37,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 50,
       discrepancy: 0,
       status: "matched",
-      lastVerified: "25 Oct 2024",
     },
     {
       id: "a3f5c219",
@@ -52,7 +49,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 0,
       discrepancy: -120,
       status: "pending",
-      lastVerified: "-",
     },
     {
       id: "f82d1c34",
@@ -65,7 +61,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 46,
       discrepancy: 1,
       status: "blind-mismatch",
-      lastVerified: "26 Oct 2024",
     },
     {
       id: "e4a7b901",
@@ -78,7 +73,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 75,
       discrepancy: 0,
       status: "counting",
-      lastVerified: "26 Oct 2024",
     },
     {
       id: "c5d8e23f",
@@ -91,7 +85,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 150,
       discrepancy: 0,
       status: "matched",
-      lastVerified: "27 Oct 2024",
     },
     {
       id: "b6f1a842",
@@ -104,7 +97,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 82,
       discrepancy: 2,
       status: "sap-discrepancy",
-      lastVerified: "27 Oct 2024",
     },
     {
       id: "d9e3c1a5",
@@ -117,7 +109,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 0,
       discrepancy: -30,
       status: "pending",
-      lastVerified: "-",
     },
     {
       id: "1a2b3c4d",
@@ -130,7 +121,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 58,
       discrepancy: -2,
       status: "blind-mismatch",
-      lastVerified: "28 Oct 2024",
     },
     {
       id: "3e5d7a9b",
@@ -143,7 +133,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 40,
       discrepancy: 0,
       status: "matched",
-      lastVerified: "28 Oct 2024",
     },
     {
       id: "8c2f4e1d",
@@ -156,7 +145,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 12,
       discrepancy: -3,
       status: "sap-discrepancy",
-      lastVerified: "28 Oct 2024",
     },
     {
       id: "5a9b3c7f",
@@ -169,7 +157,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 100,
       discrepancy: 0,
       status: "counting",
-      lastVerified: "29 Oct 2024",
     },
     {
       id: "d1e8f2a4",
@@ -182,7 +169,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 0,
       discrepancy: -200,
       status: "pending",
-      lastVerified: "-",
     },
     {
       id: "7f4c9b1e",
@@ -195,7 +181,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 56,
       discrepancy: 1,
       status: "blind-mismatch",
-      lastVerified: "29 Oct 2024",
     },
     {
       id: "2a6d5f8c",
@@ -208,7 +193,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 300,
       discrepancy: 0,
       status: "matched",
-      lastVerified: "29 Oct 2024",
     },
     {
       id: "b4e1c7a9",
@@ -221,7 +205,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 80,
       discrepancy: -5,
       status: "sap-discrepancy",
-      lastVerified: "30 Oct 2024",
     },
     {
       id: "9f3a1d6b",
@@ -234,7 +217,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 0,
       discrepancy: -150,
       status: "pending",
-      lastVerified: "-",
     },
     {
       id: "c8b2e5f1",
@@ -247,7 +229,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 90,
       discrepancy: 0,
       status: "counting",
-      lastVerified: "30 Oct 2024",
     },
     {
       id: "1d7f4a2c",
@@ -260,7 +241,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 115,
       discrepancy: 5,
       status: "blind-mismatch",
-      lastVerified: "31 Oct 2024",
     },
     {
       id: "4f2a9c1b",
@@ -273,7 +253,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 80,
       discrepancy: 0,
       status: "matched",
-      lastVerified: "01 Nov 2024",
     },
     {
       id: "7e8b3d2f",
@@ -286,7 +265,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 42,
       discrepancy: -3,
       status: "sap-discrepancy",
-      lastVerified: "01 Nov 2024",
     },
     {
       id: "1a5c9e4d",
@@ -299,7 +277,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 125,
       discrepancy: 5,
       status: "blind-mismatch",
-      lastVerified: "01 Nov 2024",
     },
     {
       id: "9b3f4a1c",
@@ -312,7 +289,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 60,
       discrepancy: 0,
       status: "counting",
-      lastVerified: "02 Nov 2024",
     },
     {
       id: "2d7e1f5a",
@@ -325,7 +301,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 0,
       discrepancy: -200,
       status: "pending",
-      lastVerified: "-",
     },
     {
       id: "8c1a2b3d",
@@ -338,7 +313,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 150,
       discrepancy: 0,
       status: "matched",
-      lastVerified: "02 Nov 2024",
     },
     {
       id: "5f4e9d8c",
@@ -351,7 +325,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 290,
       discrepancy: -10,
       status: "sap-discrepancy",
-      lastVerified: "02 Nov 2024",
     },
     {
       id: "3b2a1c4d",
@@ -364,7 +337,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 310,
       discrepancy: 10,
       status: "blind-mismatch",
-      lastVerified: "03 Nov 2024",
     },
     {
       id: "e1f2a3b4",
@@ -377,7 +349,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 400,
       discrepancy: 0,
       status: "counting",
-      lastVerified: "03 Nov 2024",
     },
     {
       id: "6d5c4b3a",
@@ -390,7 +361,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 0,
       discrepancy: -180,
       status: "pending",
-      lastVerified: "-",
     },
     {
       id: "a1b2c3d4",
@@ -403,7 +373,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 85,
       discrepancy: 0,
       status: "matched",
-      lastVerified: "04 Nov 2024",
     },
     {
       id: "f4e3d2c1",
@@ -416,7 +385,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 83,
       discrepancy: -2,
       status: "sap-discrepancy",
-      lastVerified: "04 Nov 2024",
     },
     {
       id: "c9b8a7d6",
@@ -429,7 +397,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 252,
       discrepancy: 2,
       status: "blind-mismatch",
-      lastVerified: "04 Nov 2024",
     },
     {
       id: "2e3f4a5b",
@@ -442,7 +409,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 110,
       discrepancy: 0,
       status: "counting",
-      lastVerified: "05 Nov 2024",
     },
     {
       id: "d5c6b7a8",
@@ -455,7 +421,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 0,
       discrepancy: -110,
       status: "pending",
-      lastVerified: "-",
     },
     {
       id: "7a8b9c0d",
@@ -468,7 +433,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 600,
       discrepancy: 0,
       status: "matched",
-      lastVerified: "05 Nov 2024",
     },
     {
       id: "1f2e3d4c",
@@ -481,7 +445,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 1190,
       discrepancy: -10,
       status: "sap-discrepancy",
-      lastVerified: "05 Nov 2024",
     },
     {
       id: "8d9c0b1a",
@@ -494,7 +457,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 71,
       discrepancy: 1,
       status: "blind-mismatch",
-      lastVerified: "06 Nov 2024",
     },
     {
       id: "b1c2d3e4",
@@ -507,7 +469,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 70,
       discrepancy: 0,
       status: "counting",
-      lastVerified: "06 Nov 2024",
     },
     {
       id: "4e5f6a7b",
@@ -520,7 +481,6 @@ export async function getData(): Promise<AuditTarget[]> {
       physicalQty: 0,
       discrepancy: -130,
       status: "pending",
-      lastVerified: "-",
     },
   ]
 }

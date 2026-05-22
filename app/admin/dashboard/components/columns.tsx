@@ -14,8 +14,9 @@ import { Checkbox } from "@/components/ui/checkbox"
 
 export type AuditTarget = {
   id: string
-
   rawMaterialName: string
+  fgName: string
+  uom: string
   jobNo: string
   warehouse: string
   sapQty: number
