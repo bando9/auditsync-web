@@ -6,31 +6,13 @@ import {
   Search,
   Shield,
   UserCheck,
-  UserPlus,
 } from "lucide-react"
-import React from "react"
+import HeaderUsers from "./components/header-users"
 
 function AdminUsersPage() {
   return (
     <main className="flex h-screen flex-1 flex-col overflow-hidden">
-      {/* <!-- TOP HEADER --> */}
-      <header className="flex h-16 shrink-0 items-center justify-between border-b border-border bg-white px-6">
-        <div>
-          <h1 className="flex items-center gap-2 text-lg font-semibold">
-            Manajemen Tim Lapangan
-          </h1>
-          <p className="text-xs text-muted-foreground">
-            Kelola akses, otorisasi, dan PIN staf untuk aplikasi *mobile*
-          </p>
-        </div>
-
-        <div className="flex items-center gap-3">
-          {/* <!-- Tombol Utama Tambah Anggota --> */}
-          <button className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90">
-            <UserPlus className="mr-2 h-4 w-4" /> Tambah Anggota
-          </button>
-        </div>
-      </header>
+      <HeaderUsers />
 
       {/* <!-- SCROLLABLE WORKSPACE --> */}
       <div className="flex-1 overflow-auto p-6">
