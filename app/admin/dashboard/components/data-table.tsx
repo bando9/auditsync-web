@@ -91,17 +91,6 @@ export function DataTable<TData, TValue>({
                 ""
               )}
             </div>
-            {/* <Input
-              placeholder="Cari Job No (misal: A240008)..."
-              value={
-                (table.getColumn("jobNo")?.getFilterValue() as string) ?? ""
-              }
-              onChange={(event) =>
-                table.getColumn("jobNo")?.setFilterValue(event.target.value)
-              }
-              type="text"
-              className="flex h-9 w-40 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none"
-            /> */}
           </div>
           <div className="flex items-center gap-2">
             {hasSelection ? (

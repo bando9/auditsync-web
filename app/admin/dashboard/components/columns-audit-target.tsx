@@ -114,7 +114,6 @@ export const columns: ColumnDef<AuditTarget>[] = [
         <div
           className={`text-right ${isMismatch ? "font-bold text-red-600" : "font-medium text-gray-500"}`}
         >
-          {/* Jika ingin menambahkan simbol plus untuk angka positif: */}
           {discrepancy > 0 ? `+${discrepancy}` : discrepancy}
         </div>
       )

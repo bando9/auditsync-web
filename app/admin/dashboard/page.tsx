@@ -1,12 +1,12 @@
 import HeaderDashboard from "./components/header-dashboard"
 import CardInfo from "./components/card-info"
-import { getData } from "./lib/data-audit-target"
+import { getDataAuditTarget } from "./lib/data-audit-target"
 import { DataTable } from "./components/data-table"
-import { columns } from "./components/columns"
+import { columns } from "./components/columns-audit-target"
 import { Activity, AlertTriangle, Archive, CircleCheck } from "lucide-react"
 
 async function AdminDashboard() {
-  const data = await getData()
+  const data = await getDataAuditTarget()
 
   const totalTarget = data.length
 

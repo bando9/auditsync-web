@@ -1,6 +1,6 @@
-import { AuditTarget } from "../components/columns"
+import { AuditTarget } from "../components/columns-audit-target"
 
-export async function getData(): Promise<AuditTarget[]> {
+export async function getDataAuditTarget(): Promise<AuditTarget[]> {
   return [
     {
       id: "728ed52f",
