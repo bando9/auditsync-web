@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { CheckSquare, Search } from "lucide-react"
+import { CheckSquare, Search, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface DataTableProps<TData, TValue> {
@@ -40,6 +40,8 @@ export function DataTable<TData, TValue>({
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   )
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [globalFilter, setGlobalFilter] = React.useState<any>([])
 
   // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
@@ -49,13 +51,15 @@ export function DataTable<TData, TValue>({
     getPaginationRowModel: getPaginationRowModel(),
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     onRowSelectionChange: setRowSelection,
     onColumnFiltersChange: setColumnFilters,
-    getFilteredRowModel: getFilteredRowModel(),
+    onGlobalFilterChange: setGlobalFilter,
     state: {
       sorting,
       rowSelection,
       columnFilters,
+      globalFilter,
     },
   })
 
@@ -70,22 +74,24 @@ export function DataTable<TData, TValue>({
             <div className="relative flex-1">
               <Search className="absolute top-2.5 left-2.5 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Cari nama bahan baku..."
-                value={
-                  (table
-                    .getColumn("rawMaterialName")
-                    ?.getFilterValue() as string) ?? ""
-                }
+                placeholder="Cari Bahan Baku, FG, atau Job No..."
+                value={(table.getState().globalFilter as string) ?? ""}
                 onChange={(event) =>
-                  table
-                    .getColumn("rawMaterialName")
-                    ?.setFilterValue(event.target.value)
+                  table.setGlobalFilter(String(event.target.value))
                 }
                 type="text"
                 className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 pl-9 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none"
               />
+              {globalFilter.length > 0 ? (
+                <X
+                  className="absolute top-2.5 right-2.5 h-4 w-4 cursor-pointer text-muted-foreground"
+                  onClick={() => setGlobalFilter("")}
+                />
+              ) : (
+                ""
+              )}
             </div>
-            <Input
+            {/* <Input
               placeholder="Cari Job No (misal: A240008)..."
               value={
                 (table.getColumn("jobNo")?.getFilterValue() as string) ?? ""
@@ -95,7 +101,7 @@ export function DataTable<TData, TValue>({
               }
               type="text"
               className="flex h-9 w-40 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none"
-            />
+            /> */}
           </div>
           <div className="flex items-center gap-2">
             {hasSelection ? (

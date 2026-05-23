@@ -2,14 +2,14 @@ import { Progress } from "@/components/ui/progress"
 
 interface CardInfoProps {
   title: string
-  count: string
+  count: number | string
   description: string
   colorCard?: string
   colorText?: string
   colorIcon?: string
   icon: React.ElementType
   isProgress?: boolean
-  progressCount?: number
+  progressCount?: number | null
 }
 
 function CardInfo({
