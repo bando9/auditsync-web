@@ -156,50 +156,50 @@ export const columns: ColumnDef<Session>[] = [
     header: "Aksi",
     cell: ({ row }) => {
       const status = row.getValue("status") as string
-      const inProgress = status == "in-progress"
-      const inReview = status == "in-review"
+
       const slugName = row.original.slug
 
-      if (inProgress) {
-        return (
-          <div className="text-right align-middle">
-            <Link
-              href={`/admin/sessions/${slugName}`}
-              className="inline-flex h-8 items-center justify-center rounded-md px-3 text-sm font-medium text-blue-600 transition-colors hover:bg-muted"
-            >
-              Buka Workspace <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </div>
-        )
-      } else if (inReview) {
-        return (
-          <div className="text-right align-middle">
-            <Link
-              href={`/admin/sessions/${slugName}`}
-              className="inline-flex h-8 w-8 items-center justify-center rounded-md text-sm font-medium text-muted-foreground transition-colors hover:bg-muted"
-            >
-              <Eye className="h-4 w-4" />
-            </Link>
-          </div>
-        )
-      } else {
-        return (
-          <div className="text-right align-middle text-muted-foreground">
-            <button
-              className="inline-flex h-8 w-8 items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted"
-              title="Unduh Hasil"
-            >
-              <Download className="h-4 w-4" />
-            </button>
-            <Link
-              href={`/admin/sessions/${slugName}`}
-              className="inline-flex h-8 w-8 items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted"
-              title="Lihat Data"
-            >
-              <Eye className="h-4 w-4" />
-            </Link>
-          </div>
-        )
+      switch (status) {
+        case "in-progress":
+          return (
+            <div className="text-right align-middle">
+              <Link
+                href={`/admin/sessions/${slugName}`}
+                className="inline-flex h-8 cursor-pointer items-center justify-center rounded-md px-3 text-sm font-medium text-blue-600 transition-colors hover:bg-muted"
+              >
+                Buka Workspace <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </div>
+          )
+        case "in-review":
+          return (
+            <div className="text-right align-middle">
+              <Link
+                href={`/admin/sessions/${slugName}`}
+                className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-sm font-medium text-muted-foreground transition-colors hover:bg-muted"
+              >
+                <Eye className="h-4 w-4" />
+              </Link>
+            </div>
+          )
+        case "closed":
+          return (
+            <div className="text-right align-middle text-muted-foreground">
+              <button
+                className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted"
+                title="Unduh Hasil"
+              >
+                <Download className="h-4 w-4" />
+              </button>
+              <Link
+                href={`/admin/sessions/${slugName}`}
+                className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted"
+                title="Lihat Data"
+              >
+                <Eye className="h-4 w-4" />
+              </Link>
+            </div>
+          )
       }
     },
   },

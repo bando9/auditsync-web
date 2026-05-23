@@ -29,11 +29,15 @@ import { cn } from "@/lib/utils"
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  placeholderInputSearch?: string
+  entityLabel?: string
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  placeholderInputSearch,
+  entityLabel,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [rowSelection, setRowSelection] = React.useState({})
@@ -65,6 +69,10 @@ export function DataTable<TData, TValue>({
 
   const selectedCount = table.getFilteredSelectedRowModel().rows.length
   const hasSelection = selectedCount > 0
+  const { pageIndex, pageSize } = table.getState().pagination
+  const totalRows = table.getFilteredRowModel().rows.length
+  const startRow = totalRows === 0 ? 0 : pageIndex * pageSize + 1
+  const endRow = Math.min((pageIndex + 1) * pageSize, totalRows)
 
   return (
     <div className="max-w-6xl">
@@ -74,7 +82,7 @@ export function DataTable<TData, TValue>({
             <div className="relative flex-1">
               <Search className="absolute top-2.5 left-2.5 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Cari Bahan Baku, FG, atau Job No..."
+                placeholder={placeholderInputSearch}
                 value={(table.getState().globalFilter as string) ?? ""}
                 onChange={(event) =>
                   table.setGlobalFilter(String(event.target.value))
@@ -172,7 +180,13 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
       <div className="flex-1 text-sm text-muted-foreground">
-        {table.getFilteredRowModel().rows.length} total baris
+        Menampilkan{" "}
+        <span className="font-medium text-foreground">
+          {startRow} - {endRow}
+        </span>{" "}
+        dari total{" "}
+        <span className="font-medium text-foreground">{totalRows}</span>{" "}
+        {entityLabel}
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button

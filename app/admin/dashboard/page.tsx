@@ -1,7 +1,7 @@
 import HeaderDashboard from "./components/header-dashboard"
 import CardInfo from "./components/card-info"
 import { getDataAuditTarget } from "./lib/data-audit-target"
-import { DataTable } from "./components/data-table"
+import { DataTable } from "../components/data-table"
 import { columns } from "./components/columns-audit-target"
 import { Activity, AlertTriangle, Archive, CircleCheck } from "lucide-react"
 
@@ -75,7 +75,12 @@ async function AdminDashboard() {
           ))}
         </div>
 
-        <DataTable columns={columns} data={data} />
+        <DataTable
+          columns={columns}
+          data={data}
+          placeholderInputSearch="Cari Bahan Baku, FG, atau Job No..."
+          entityLabel="data"
+        />
       </div>
     </main>
   )

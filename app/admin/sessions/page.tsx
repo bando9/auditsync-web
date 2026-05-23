@@ -1,6 +1,6 @@
 import HeaderSessions from "./components/header-sessions"
 import { columns } from "./components/columns-sessions"
-import { DataTable } from "../dashboard/components/data-table"
+import { DataTable } from "../components/data-table"
 import { getDataSession } from "./lib/data-sessions"
 
 async function SessionsPage() {
@@ -11,7 +11,12 @@ async function SessionsPage() {
       <HeaderSessions />
 
       <div className="flex-1 overflow-auto p-6">
-        <DataTable columns={columns} data={data} />
+        <DataTable
+          columns={columns}
+          data={data}
+          placeholderInputSearch="Cari nama sesi (misal: Q2 2026)..."
+          entityLabel="riwayat sesi"
+        />
       </div>
     </main>
   )
