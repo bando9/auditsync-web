@@ -1,8 +1,8 @@
 import HeaderMobileSessions from "./components/header-mobile-sessions"
 import CardSessions from "./components/card-sessions"
-import { getDataSession } from "@/app/admin/sessions/lib/data-sessions"
 import FooterMobileSession from "./components/footer-mobile-sessions"
 import EmptySessions from "./components/empty-sessions"
+import { getDataSession } from "@/app/data/dummy-data"
 
 async function MobileSession() {
   const data = await getDataSession()
