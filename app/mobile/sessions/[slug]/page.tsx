@@ -1,36 +1,64 @@
-import React from "react"
+import { getDataAuditTarget, getDataSession } from "@/app/data/dummy-data"
+import HeaderMobileSessionsDetails from "./components/header-mobile-sessions-detail"
+import { Search } from "lucide-react"
+import ItemCardList from "./components/item-card-list"
+import FooterMobileSessionsDetail from "./components/footer-mobile-sessions-detail"
 
-function MobileSessionDetail() {
+async function MobileSessionDetail({
+  params,
+}: {
+  params: Promise<{ slug: string }> | { slug: string }
+}) {
+  const dataSession = await getDataSession()
+  const dataAuditTarget = await getDataAuditTarget()
+
+  const resolvedParams = await params
+
+  const currentSession = dataSession.find(
+    (session) =>
+      session.slug == resolvedParams.slug || session.id == resolvedParams.slug
+  )
+
+  if (!currentSession) {
+    return (
+      <div className="min-h-screen bg-red-50 p-6 text-red-900">
+        <h1 className="mb-4 text-xl font-bold">
+          🚨 Sesi Tidak Ditemukan (Mode Debug)
+        </h1>
+        <div className="space-y-2 rounded border border-red-200 bg-white p-4 font-mono text-sm">
+          <p>
+            <strong>Yang dicari (slug dari URL):</strong> <br />
+            {resolvedParams.slug}
+          </p>
+          <hr className="my-2" />
+          <p>
+            <strong>Yang tersedia di Dummy Data:</strong>
+          </p>
+          <ul className="list-disc pl-5">
+            {dataSession.map((s) => (
+              <li key={s.id}>
+                ID: {s.id} | Slug: {s.slug || "Tidak ada slug"}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    )
+  }
+
+  const currentAuditTargets = dataAuditTarget.filter(
+    (item) => item.sessionId === currentSession.id
+  )
+  console.log(currentAuditTargets)
+
   return (
     <div className="flex h-screen flex-col overflow-hidden bg-gray-50 font-sans text-foreground antialiased">
-      {/* <!-- FIXED TOP SECTION (STICKY HEADERS + SEARCH) --> */}
       <div className="shrink-0 border-b border-border bg-white shadow-sm">
-        {/* <!-- ROW 1: MINI NAVBAR --> */}
-        <header className="flex h-12 items-center justify-between border-b border-border/60 px-3">
-          <div className="flex items-center gap-2">
-            <a
-              href="#"
-              className="inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground hover:bg-muted"
-            >
-              <i data-lucide="arrow-left" className="h-4 w-4"></i>
-            </a>
-            <div className="max-w-45 truncate">
-              <span className="block truncate text-sm font-bold tracking-tight">
-                Stock Opname Q2 2026
-              </span>
-            </div>
-          </div>
-          <span className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-2 py-0.5 text-[10px] font-semibold text-blue-700">
-            🕵️‍♂️ Auditor
-          </span>
-        </header>
-        {/* <!-- ROW 2: SEARCH BAR (UKURAN PENUH & MUDAH DITEKAN) --> */}
+        <HeaderMobileSessionsDetails sessions={dataSession} />
+
         <div className="p-3">
           <div className="relative w-full">
-            <i
-              data-lucide="search"
-              className="absolute top-3 left-3 h-4 w-4 text-muted-foreground"
-            ></i>
+            <Search className="absolute top-3 left-3 h-4 w-4 text-muted-foreground" />
             <input
               type="text"
               placeholder="Cari Nama Bahan Baku atau Job No..."
@@ -56,42 +84,12 @@ function MobileSessionDetail() {
         </div>
       </div>
 
-      {/* <!-- SCROLLABLE LIST OF TARGETS --> */}
       <main className="flex-1 space-y-2 overflow-y-auto p-3">
         {/* <!-- ITEM 1: STATUS MATCH (🟢 Sudah Selesai) --> */}
-        <a
-          href="#"
-          className="group relative block overflow-hidden rounded-xl border border-border bg-white p-3 shadow-sm transition-all active:scale-[0.99]"
-        >
-          <div className="flex items-start gap-3">
-            {/* <!-- Indikator Warna Status Bulat Besar --> */}
-            <span
-              className="mt-1.5 h-3 w-3 shrink-0 rounded-full bg-green-500"
-              title="Match"
-            ></span>
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center justify-between gap-2">
-                <span className="font-mono text-xs font-bold text-blue-600">
-                  JOB: A240008
-                </span>
-                <span className="text-[10px] text-muted-foreground">
-                  Sortasi 4
-                </span>
-              </div>
-              <h2 className="mt-0.5 truncate text-sm font-bold text-gray-900 group-hover:text-primary">
-                SLA BATTERY 12V/12AH
-              </h2>
-              <p className="mt-0.5 truncate text-xs text-muted-foreground">
-                FG: E-BIKE 14 X 2.50 EXOTIC EV-922
-              </p>
-            </div>
-            <div className="shrink-0 self-center pl-2 text-right">
-              <span className="rounded border border-green-100 bg-green-50 px-1.5 py-1 text-xs font-bold text-green-700">
-                23 set
-              </span>
-            </div>
-          </div>
-        </a>
+        {/* <ItemCardList
+          items={currentAuditTargets}
+          slugSession={resolvedParams.slug}
+        /> */}
 
         {/* <!-- ITEM 2: STATUS MISMATCH (🔴 Selisih Hitungan) --> */}
         <a
@@ -194,15 +192,8 @@ function MobileSessionDetail() {
           </div>
         </a>
       </main>
-      <footer className="z-10 flex h-10 shrink-0 items-center justify-between border-t border-border bg-white px-4 text-[11px] text-muted-foreground">
-        <span>
-          Sesi: <span className="font-semibold text-gray-700">Q2 2026</span>
-        </span>
-        <span>
-          Selesai:{" "}
-          <span className="font-semibold text-green-600">2 / 4 Item</span>
-        </span>
-      </footer>
+
+      {/* <FooterMobileSessionsDetail /> */}
     </div>
   )
 }
