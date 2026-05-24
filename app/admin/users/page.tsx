@@ -8,11 +8,21 @@ import {
   UserCheck,
 } from "lucide-react"
 import HeaderUsers from "./components/header-users"
+import { DataTable } from "../components/data-table"
+import { getDataUser } from "@/app/data/dummy-data"
+import { columns } from "./components/columns-user"
 
-function AdminUsersPage() {
+async function AdminUsersPage() {
+  const data = await getDataUser()
+
   return (
     <main className="flex h-screen flex-1 flex-col overflow-hidden">
       <HeaderUsers />
+      <DataTable
+        columns={columns}
+        data={data}
+        placeholderInputSearch="Cari nama atau username/ID..."
+      />
 
       {/* <!-- SCROLLABLE WORKSPACE --> */}
       <div className="flex-1 overflow-auto p-6">
