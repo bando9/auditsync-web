@@ -11,24 +11,7 @@ import {
   Loader2,
 } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
-
-export type AuditTarget = {
-  id: string
-  rawMaterialName: string
-  fgName: string
-  uom: string
-  jobNo: string
-  warehouse: string
-  sapQty: number
-  physicalQty: number
-  discrepancy: number
-  status:
-    | "pending"
-    | "counting"
-    | "blind-mismatch"
-    | "matched"
-    | "sap-discrepancy"
-}
+import { AuditTarget } from "@/app/types"
 
 export const columns: ColumnDef<AuditTarget>[] = [
   {
@@ -89,7 +72,6 @@ export const columns: ColumnDef<AuditTarget>[] = [
     accessorKey: "warehouse",
     header: "Area / Gudang",
   },
-
   {
     accessorKey: "sapQty",
     header: "SAP",
@@ -98,7 +80,6 @@ export const columns: ColumnDef<AuditTarget>[] = [
     accessorKey: "physicalQty",
     header: "Fisik",
   },
-
   {
     accessorKey: "discrepancy",
     header: "Selisih",

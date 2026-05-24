@@ -5,23 +5,7 @@ import { ArrowRight, CheckCheck, Download, Eye } from "lucide-react"
 import Link from "next/link"
 import dayjs from "dayjs"
 import "dayjs/locale/id"
-
-export type Approver = {
-  id: string
-  initials: string
-  name?: string
-}
-
-export type Session = {
-  id: string
-  name: string
-  slug: string
-  createdAt: string
-  totalTarget: number
-  approvalStatus: "waiting" | "partial" | "approved"
-  approvers: Approver[]
-  status: "in-progress" | "in-review" | "closed"
-}
+import { Session } from "@/app/types"
 
 export const columns: ColumnDef<Session>[] = [
   {

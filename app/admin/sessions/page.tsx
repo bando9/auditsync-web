@@ -1,7 +1,7 @@
 import HeaderSessions from "./components/header-sessions"
 import { columns } from "./components/columns-sessions"
 import { DataTable } from "../components/data-table"
-import { getDataSession } from "./lib/data-sessions"
+import { getDataSession } from "@/app/data/dummy-data"
 
 async function SessionsPage() {
   const data = await getDataSession()

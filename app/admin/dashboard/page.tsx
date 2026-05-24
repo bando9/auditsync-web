@@ -1,9 +1,9 @@
 import HeaderDashboard from "./components/header-dashboard"
 import CardInfo from "./components/card-info"
-import { getDataAuditTarget } from "./lib/data-audit-target"
 import { DataTable } from "../components/data-table"
 import { columns } from "./components/columns-audit-target"
 import { Activity, AlertTriangle, Archive, CircleCheck } from "lucide-react"
+import { getDataAuditTarget } from "@/app/data/dummy-data"
 
 async function AdminDashboard() {
   const data = await getDataAuditTarget()
