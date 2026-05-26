@@ -1,26 +1,13 @@
-import { ArrowLeft, CheckCircle2, EyeOff, MapPin } from "lucide-react"
-import React from "react"
+"use client"
+
+import { CheckCircle2, EyeOff, MapPin } from "lucide-react"
+import HeaderMobileInputForm from "./components/header-mobile-input-form"
 
 function MobileInputForm() {
   return (
     <div className="flex h-screen flex-col overflow-hidden bg-gray-50 font-sans text-foreground antialiased">
       {/* <!-- TOP MOBILE HEADER --> */}
-      <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center border-b border-border bg-white px-4 shadow-sm">
-        <a
-          href="#"
-          className="mr-3 inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted"
-        >
-          <ArrowLeft className="h-5 w-5" />
-        </a>
-        <div className="flex flex-col">
-          <span className="text-base leading-tight font-bold tracking-tight">
-            Input Fisik Barang
-          </span>
-          <span className="text-[10px] font-medium text-muted-foreground">
-            Sesi: Stock Opname Q2 2026
-          </span>
-        </div>
-      </header>
+      <HeaderMobileInputForm />
 
       {/* <!-- MAIN SCROLLABLE BODY --> */}
       <main className="mx-full flex w-full max-w-md flex-1 flex-col overflow-y-auto p-4">

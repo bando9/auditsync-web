@@ -1,9 +1,39 @@
+"use client"
+
 import { Search } from "lucide-react"
 import FooterMobileSessionsDetail from "./footer-mobile-sessions-detail"
 import ItemCard from "./item-card"
 import HeaderMobileSessionsDetails from "./header-mobile-sessions-detail"
+import { AuditTarget, Session } from "@/app/types"
+import { usePathname } from "next/navigation"
+import Link from "next/link"
 
-function MobileSessionDetailInteractive({ dataSession, currentAuditTarget }) {
+interface SessionDetailInteractiveProps {
+  dataSession: Session[]
+  dataAuditTarget: AuditTarget[]
+}
+
+function MobileSessionDetailInteractive({
+  dataSession,
+  dataAuditTarget,
+}: SessionDetailInteractiveProps) {
+  const path = usePathname()
+
+  const currentSessionSlug = path.split("/").pop()
+
+  const currentSession = dataSession.find(
+    (session) => session.slug === currentSessionSlug
+  )
+  const currentSessionId = currentSession?.id
+
+  const currentAuditTarget = dataAuditTarget.filter((data) => {
+    const sessionId = data.sessionId
+
+    if (sessionId == currentSessionId) {
+      return data
+    }
+  })
+
   return (
     <div className="flex h-screen flex-col overflow-hidden bg-gray-50 font-sans text-foreground antialiased">
       <div className="shrink-0 border-b border-border bg-white shadow-sm">
@@ -38,15 +68,19 @@ function MobileSessionDetailInteractive({ dataSession, currentAuditTarget }) {
       </div>
 
       <main className="flex-1 space-y-2 overflow-y-auto p-3">
-        {/* <!-- ITEM 1: STATUS MATCH (🟢 Sudah Selesai) --> */}
-        {/* <ItemCardList items={dataAuditTarget} slugSession={slugSession} /> */}
         {currentAuditTarget.map((item) => {
-          return <ItemCard key={item.id} dataAuditTarget={item} />
+          return (
+            <ItemCard
+              key={item.id}
+              dataAuditTarget={item}
+              slugSession={currentSessionSlug}
+            />
+          )
         })}
 
         {/* <!-- ITEM 2: STATUS MISMATCH (🔴 Selisih Hitungan) --> */}
-        <a
-          href="#"
+        <Link
+          href={`/mobile/sessions/`}
           className="group relative block overflow-hidden rounded-xl border border-red-100 bg-white p-3 shadow-sm transition-all active:scale-[0.99]"
         >
           <div className="flex items-start gap-3">
@@ -77,7 +111,7 @@ function MobileSessionDetailInteractive({ dataSession, currentAuditTarget }) {
               </span>
             </div>
           </div>
-        </a>
+        </Link>
 
         {/* <!-- ITEM 3: STATUS MATCH (🟢 Sudah Selesai) --> */}
         <a

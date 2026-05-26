@@ -1,14 +1,14 @@
 "use client"
 
-import { AuditTarget, Session } from "@/app/types"
-import { Link } from "lucide-react"
+import { AuditTarget } from "@/app/types"
+import Link from "next/link"
 
 function ItemCard({
   dataAuditTarget,
   slugSession,
 }: {
   dataAuditTarget: AuditTarget
-  slugSession?: Session
+  slugSession?: string
 }) {
   const isCounted = dataAuditTarget.physicalQty !== null
 
@@ -20,7 +20,7 @@ function ItemCard({
       <div className="flex items-start gap-3">
         {/* <!-- Indicator Status Color --> */}
         <span
-          // title="Match"
+          title="Match"
           className="mt-1.5 h-3 w-3 shrink-0 rounded-full bg-green-500"
         ></span>
         <div className="min-w-0 flex-1">
