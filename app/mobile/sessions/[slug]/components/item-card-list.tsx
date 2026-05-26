@@ -1,11 +1,11 @@
-import { AuditTarget } from "@/app/types"
+import { AuditTarget, Session } from "@/app/types"
 import ItemCard from "./item-card"
 
 function ItemCardList({
   slugSession,
   items,
 }: {
-  slugSession: string
+  slugSession: Session
   items: AuditTarget[]
 }) {
   return (

@@ -1,4 +1,6 @@
-import { AuditTarget } from "@/app/types"
+"use client"
+
+import { AuditTarget, Session } from "@/app/types"
 import { Link } from "lucide-react"
 
 function ItemCard({
@@ -6,7 +8,7 @@ function ItemCard({
   slugSession,
 }: {
   dataAuditTarget: AuditTarget
-  slugSession: string
+  slugSession?: Session
 }) {
   const isCounted = dataAuditTarget.physicalQty !== null
 
